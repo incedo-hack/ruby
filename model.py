@@ -83,60 +83,6 @@ class User(BaseModel):
     class Meta:
          order_by = ('user_name',)        
 
-# class Tbluserdetailstransaction(BaseModel):
-#     password = CharField(db_column='Password', null=True)
-#     refreshrate = IntegerField(db_column='RefreshRate', null=True)
-#     saltvalue = CharField(db_column='SaltValue', null=True)
-#     updatetime = DateTimeField(db_column='UpdateTime')
-#     userid = PrimaryKeyField(db_column='UserID')
-#     usermasterid = ForeignKeyField(db_column='UserMasterID', null=True, rel_model=Tblusermaster, to_field='usermasterid')
-
-#     class Meta:
-#         db_table = 'tbluserdetailstransaction'
-
-# class Tblalertconfigtransaction(BaseModel):
-#     configid = PrimaryKeyField(db_column='ConfigID')
-#     countryid = ForeignKeyField(db_column='CountryID', null=True, rel_model=Tblcountrymaster, to_field='countryid')
-#     deviceid = ForeignKeyField(db_column='DeviceID', null=True, rel_model=Tbldevicemaster, to_field='deviceid')
-#     email = CharField(db_column='Email', null=True)
-#     mobile = IntegerField(db_column='Mobile', null=True)
-#     mobilecode = CharField(db_column='MobileCode', null=True)
-#     name = CharField(db_column='Name', null=True)
-#     updatetime = DateTimeField(db_column='UpdateTime', null=True)
-#     userid = ForeignKeyField(db_column='UserID', null=True, rel_model=Tbluserdetailstransaction, to_field='userid')
-
-#     class Meta:
-#         db_table = 'tblalertconfigtransaction'
-
-# class Tblalertmaster(BaseModel):
-#     alertdescription = CharField(db_column='AlertDescription', null=True)
-#     alertid = PrimaryKeyField(db_column='AlertID')
-#     alertname = CharField(db_column='AlertName', null=True)
-#     alerttype = CharField(db_column='AlertType', null=True)
-#     prioritytype = IntegerField(db_column='PriorityType', null=True)
-
-#     class Meta:
-#         db_table = 'tblalertmaster'
-
-# class Tblalerttransaction(BaseModel):
-#     alertdisplaytime = DateTimeField(db_column='AlertDisplayTime')
-#     alertid = ForeignKeyField(db_column='AlertID', null=True, rel_model=Tblalertmaster, to_field='alertid')
-#     alertpacketid = PrimaryKeyField(db_column='AlertPacketID')
-#     alertpackettime = DateTimeField(db_column='AlertPacketTime')
-#     current_amp = IntegerField(db_column='Current_Amp', null=True)
-#     deviceid = ForeignKeyField(db_column='DeviceID', null=True, rel_model=Tbldevicemaster, to_field='deviceid')
-#     frequency = IntegerField(db_column='Frequency', null=True)
-#     g_value = FloatField(db_column='G_Value', null=True)
-#     humidity = IntegerField(db_column='Humidity', null=True)
-#     power_watt = IntegerField(db_column='Power_Watt', null=True)
-#     temperature = IntegerField(db_column='Temperature', null=True)
-#     voltage_volt = IntegerField(db_column='Voltage_Volt', null=True)
-#     x_value = IntegerField(db_column='X_Value', null=True)
-#     y_value = IntegerField(db_column='Y_Value', null=True)
-#     z_value = IntegerField(db_column='Z_Value', null=True)
-
-#     class Meta:
-#         db_table = 'tblalerttransaction'
 
 class DeviceReadings(BaseModel):
     current_amp = IntegerField(null=True)
@@ -201,12 +147,23 @@ class Utils(object):
 
         #Add some users
 
-
+def build_tree():
+    cursor = database.execute_sql('call p_get_tree(%s)',(1)) 
+    for row in cursor.fetchall():
+        print(row)
 if __name__ == "__main__":
-    Utils().setup_tables()
+    # Utils().setup_tables()
     test = Test()
     dt = '08-08-2017 08:14'
     print(test.ts)
     datetime_object = datetime.datetime.strptime(dt, '%d-%m-%Y %H:%M')
     print(datetime_object)
     print(type(datetime_object))
+    cursor = database.execute_sql('call p_get_tree(%s)',(1))
+    build_tree() 
+    # print(list(foo))
+    # for value in foo:
+    #     print(value)
+    # print(cursor.fetchall())
+    # for row in cursor.fetchall():
+    #     print (row
