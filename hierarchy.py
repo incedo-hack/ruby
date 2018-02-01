@@ -135,3 +135,43 @@ def find_append_parent(tree, item):
         for sub_tree in tree['children']:
             find_append_parent(sub_tree, item)
     return tree
+
+def get_by_account(event, context):
+    body = {
+        "message": "Go Serverless v1.0! Your function executed successfully!",
+        "input": event
+    }
+    if 'pathParameters' in event and 'id' in event['pathParameters']:
+        _id = event['pathParameters']['id']
+        
+        node_by_acc = prefix_nodes.get(account_id=_id)
+
+        
+        tree_list = query_db(node_by_acc.id)
+        if tree_list:
+            tree_json = build_tree(tree_list)
+            body = tree_json
+        else:
+            body = {
+                "message": "No data found for the given pathParameters",
+                "input": event,
+                "query_output" : tree_list
+            }
+            response = {
+                "statusCode": 400,
+                "body": json.dumps(body)
+            }
+            return response
+        
+    else:
+        body = {
+            "message": "Error no id in pathParameters",
+            "input": event
+        }
+
+    response = {
+        "statusCode": 200,
+        "body": json.dumps(body)
+    }
+
+    return response
