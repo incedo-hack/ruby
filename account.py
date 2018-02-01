@@ -93,6 +93,30 @@ def get(event, context):
 
     return response
 
+
+def getall(event, context):
+    accounts = Account.select()
+    account_list = []
+    for account in accounts:
+        tmp = dict()
+        tmp['id'] = account.id
+        tmp['name'] = account.name
+        tmp['address1'] = account.address1
+        tmp['address2'] = account.address2
+        tmp['state'] = account.state
+        tmp['city'] = account.city
+        tmp['zip'] = account.zip
+        tmp['phone'] = account.phone
+        tmp['web'] = account.web
+        tmp['contact_name'] = account.contact_name
+        tmp['contact_email'] = account.contact_email
+        account_list.append(tmp)
+    response = {
+            "statusCode": 200,
+            "body": json.dumps(account_list)
+        }
+    return response
+
     # Use this code if you don't use the http event with the LAMBDA-PROXY
     # integration
     """
@@ -103,4 +127,4 @@ def get(event, context):
     """
 if __name__ == "__main__":
     #print(get(None,None));  
-    print(create(None,None))
+    print(getall(None,None))

@@ -96,6 +96,29 @@ def get(event, context):
     }
     """
 
+def getall(event, context):
+    branches = Branch.select()
+    branch_list = []
+    for branch in branches:
+        tmp = dict()
+        tmp['id'] = branch.id
+        tmp['name'] = branch.name
+        tmp['address1'] = branch.address1
+        tmp['address2'] = branch.address2
+        tmp['state'] = branch.state
+        tmp['city'] = branch.city
+        tmp['zip'] = branch.zip
+        tmp['phone'] = branch.phone
+        tmp['web'] = branch.web
+        tmp['contact_name'] = branch.contact_name
+        tmp['contact_email'] = branch.contact_email
+        branch_list.append(tmp)
+    response = {
+            "statusCode": 200,
+            "body": json.dumps(branch_list)
+        }
+    return response
+
 if __name__ == "__main__":
     #print(get(None,None));  
     data = {
@@ -103,4 +126,4 @@ if __name__ == "__main__":
             "body": " {\r\n \t\"name\": \"hi\",\r\n \t\"address1\": \"hi\",\r\n \t\"address2\": \"hi\",\r\n \t\"state\": \"hi\",\r\n \t\"city\": \"hi\",\r\n \t\"zip\": \"hi\",\r\n \t\"phone\": \"hi\",\r\n \t\"web\": \"hi\",\r\n \t\"contact_name\": \"hi\",\r\n \t\"contact_email\": \"hi\"\r\n }"            
         }            
     }
-    print(create(data,None))
+    print(getall(data,None))

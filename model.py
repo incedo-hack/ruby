@@ -10,8 +10,8 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 try:
-    db_env = 'LOCAL_DATABASE'
-    #db_env = 'CLOUD_DATABASE'
+    #db_env = 'LOCAL_DATABASE'
+    db_env = 'CLOUD_DATABASE'
 
     cp = configparser.SafeConfigParser()
     cp.read(os.path.splitext(__file__)[0] + '.ini')
@@ -75,9 +75,11 @@ class User(BaseModel):
     email_id = TextField( null=True)
 #    account = ForeignKeyField(Account)
 #   branch = ForeignKeyField(Branch)
+    account_id = IntegerField(null=True)
+    permissions = TextField( null=True)
 
     class Meta:
-         order_by = ('user_name',)        
+        order_by = ('user_name',)        
 
 class prefix_nodes(BaseModel):
     parent_id = IntegerField(null=True)
