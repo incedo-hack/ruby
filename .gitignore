@@ -15,7 +15,7 @@ var/
 *.egg-info/
 .installed.cfg
 *.egg
-
+*.pyc
 # Serverless directories
 .serverless.vscode/
 node_modules/
