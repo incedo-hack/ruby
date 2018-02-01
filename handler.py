@@ -2,7 +2,7 @@ import json
 import logging
 import peewee as pw
 import sys
-from model import Utils
+from model import * 
 
 
 
@@ -12,6 +12,20 @@ logger.setLevel(logging.INFO)
 def hello(event, context):
     # foo = main(event, context)
     success = False
+    cursor = database.execute_sql("call p_get_tree(1)")
+    resp = []
+    for row in cursor.fetchall(): 
+        row_obj = dict()
+        row_obj['id'] = row[0]
+        row_obj['is_deleted'] = row[1]
+        row_obj['parent_id'] = row[2]
+        row_obj['value'] = row[3].lstrip("-")
+        row_obj['path_length'] = row[4]
+        row_obj['breadcrumbs'] = row[5]
+        # print(row_obj)
+        resp.append(row_obj)
+    
+    
     # try:
     #     Utils().setup_tables()
     #     Utils().load_mock_data()
@@ -23,7 +37,9 @@ def hello(event, context):
     body = {
         "message": "Go Serverless v1.0! Your function executed successfully!",
         "input": event,
-        "success" : success
+        "success" : success,
+        "response" : resp
+
     }
 
     response = {
@@ -59,8 +75,8 @@ def main(event, context):
     except:
         logger.error("ERROR: Unexpected error: Could not connect to MySql instance.")
         sys.exit()
-
-    cursor = myDB.execute_sql("call p_get_tree(1)")
+    id = 1
+    cursor = myDB.execute_sql("call p_get_tree(%s)" %(id))
     resp = []
     for row in cursor.fetchall(): 
         # print( row)
@@ -78,17 +94,23 @@ def main(event, context):
     return resp
 
 def build_tree(items):
+    '''
+     Function to build tree
+    '''
     tree = {}    
     for item in items:
         if tree:
             #do something
-            new_tree = find_append_parent(tree, item)
+            tree = find_append_parent(tree, item)
         else:
             tree = item
     # print(tree)
-    return new_tree
+    return tree
 
 def find_append_parent(tree, item):
+    '''
+    find parent and append child to it
+    '''
     if not 'children' in tree:
         tree['children'] = []
     if tree['id'] == item['parent_id']:
