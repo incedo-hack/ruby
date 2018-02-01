@@ -17,7 +17,12 @@
         "Description": "The AWS CloudFormation template for this Serverless application",
         "Resources": {
           "ServerlessDeploymentBucket": {
-            "Type": "AWS::S3::Bucket"
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "AccelerateConfiguration": {
+                "AccelerationStatus": "Suspended"
+              }
+            }
           },
           "HelloLogGroup": {
             "Type": "AWS::Logs::LogGroup",
@@ -202,7 +207,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/rdm/dev/1517477715504-2018-02-01T09:35:15.504Z/rdm.zip"
+                "S3Key": "serverless/rdm/dev/1517478886506-2018-02-01T09:54:46.506Z/rdm.zip"
               },
               "FunctionName": "rdm-dev-hello",
               "Handler": "handler.hello",
@@ -221,14 +226,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "HelloLambdaVersionngsPO0hhIzvBY2WdIFzGoYzZp9TkCBQ8yBvUoyukNA": {
+          "HelloLambdaVersiondl0VNB5m9NAVj8Id2G1u9P0I6qstOSikJf1Snoirk": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "HelloLambdaFunction"
               },
-              "CodeSha256": "Xf3knlOdoMUtrqFYn1boFmXKXil6L2py7iVzzeamQEE="
+              "CodeSha256": "06VE8kJmYLFgvmQr+GtkV5q+xPmfFp1sej9HkyyixDk="
             }
           },
           "CreateuserLambdaFunction": {
@@ -238,7 +243,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/rdm/dev/1517477715504-2018-02-01T09:35:15.504Z/rdm.zip"
+                "S3Key": "serverless/rdm/dev/1517478886506-2018-02-01T09:54:46.506Z/rdm.zip"
               },
               "FunctionName": "rdm-dev-createuser",
               "Handler": "user.create",
@@ -257,14 +262,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CreateuserLambdaVersionECHx2jkZ1F5gokKTet0MhTLPSdhrXKBurcYuIV6L1I": {
+          "CreateuserLambdaVersionFGbUYGLPzWQa4FM9Po1E7bzj6dfxPF0JLe2tJmOK0g": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateuserLambdaFunction"
               },
-              "CodeSha256": "Xf3knlOdoMUtrqFYn1boFmXKXil6L2py7iVzzeamQEE="
+              "CodeSha256": "06VE8kJmYLFgvmQr+GtkV5q+xPmfFp1sej9HkyyixDk="
             }
           },
           "GetuserLambdaFunction": {
@@ -274,7 +279,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/rdm/dev/1517477715504-2018-02-01T09:35:15.504Z/rdm.zip"
+                "S3Key": "serverless/rdm/dev/1517478886506-2018-02-01T09:54:46.506Z/rdm.zip"
               },
               "FunctionName": "rdm-dev-getuser",
               "Handler": "user.get",
@@ -293,14 +298,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "GetuserLambdaVersionVlab4d4n5jHJ7qEYQnydrAwa0QZQdm9krwGjtCd1VA": {
+          "GetuserLambdaVersionUAcE2c14XfTJSiV2MW6YPaISmqxTWhYDagFEW6M": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetuserLambdaFunction"
               },
-              "CodeSha256": "Xf3knlOdoMUtrqFYn1boFmXKXil6L2py7iVzzeamQEE="
+              "CodeSha256": "06VE8kJmYLFgvmQr+GtkV5q+xPmfFp1sej9HkyyixDk="
             }
           },
           "GethierarchyLambdaFunction": {
@@ -310,7 +315,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/rdm/dev/1517477715504-2018-02-01T09:35:15.504Z/rdm.zip"
+                "S3Key": "serverless/rdm/dev/1517478886506-2018-02-01T09:54:46.506Z/rdm.zip"
               },
               "FunctionName": "rdm-dev-gethierarchy",
               "Handler": "hierarchy.get",
@@ -329,14 +334,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "GethierarchyLambdaVersionIVmOHCwgaCtvt7nwGhLDm85e6sGwMNW4HHo34IfPM": {
+          "GethierarchyLambdaVersionRo9t6GjuMLtZfVt9Vmid5RA3Ey5zkbkT8Qk1npsPpA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GethierarchyLambdaFunction"
               },
-              "CodeSha256": "Xf3knlOdoMUtrqFYn1boFmXKXil6L2py7iVzzeamQEE="
+              "CodeSha256": "06VE8kJmYLFgvmQr+GtkV5q+xPmfFp1sej9HkyyixDk="
             }
           },
           "CreatehierarchyLambdaFunction": {
@@ -346,7 +351,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/rdm/dev/1517477715504-2018-02-01T09:35:15.504Z/rdm.zip"
+                "S3Key": "serverless/rdm/dev/1517478886506-2018-02-01T09:54:46.506Z/rdm.zip"
               },
               "FunctionName": "rdm-dev-createhierarchy",
               "Handler": "hierarchy.create",
@@ -365,14 +370,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CreatehierarchyLambdaVersionVk1EgXsEoH9rCOum3BLGmXeYM0d5fShOibsv3rUmI8": {
+          "CreatehierarchyLambdaVersiondX9KCKVlRWWNGKEdh8IBLEDXySNDiKD5UHckBnSq8": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreatehierarchyLambdaFunction"
               },
-              "CodeSha256": "Xf3knlOdoMUtrqFYn1boFmXKXil6L2py7iVzzeamQEE="
+              "CodeSha256": "06VE8kJmYLFgvmQr+GtkV5q+xPmfFp1sej9HkyyixDk="
             }
           },
           "GetbranchesLambdaFunction": {
@@ -382,7 +387,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/rdm/dev/1517477715504-2018-02-01T09:35:15.504Z/rdm.zip"
+                "S3Key": "serverless/rdm/dev/1517478886506-2018-02-01T09:54:46.506Z/rdm.zip"
               },
               "FunctionName": "rdm-dev-getbranches",
               "Handler": "branches.get",
@@ -401,14 +406,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "GetbranchesLambdaVersionq7ypfRGcwWdNAUYvsZcK1UruF3bpeH4Hl1UVTpo": {
+          "GetbranchesLambdaVersionBT27UKN3BOUKaux7TIrtlvAM8fhWjqU8oLyd59hYEnU": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetbranchesLambdaFunction"
               },
-              "CodeSha256": "Xf3knlOdoMUtrqFYn1boFmXKXil6L2py7iVzzeamQEE="
+              "CodeSha256": "06VE8kJmYLFgvmQr+GtkV5q+xPmfFp1sej9HkyyixDk="
             }
           },
           "CreatebranchesLambdaFunction": {
@@ -418,7 +423,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/rdm/dev/1517477715504-2018-02-01T09:35:15.504Z/rdm.zip"
+                "S3Key": "serverless/rdm/dev/1517478886506-2018-02-01T09:54:46.506Z/rdm.zip"
               },
               "FunctionName": "rdm-dev-createbranches",
               "Handler": "branches.create",
@@ -437,14 +442,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CreatebranchesLambdaVersionai17jXRnv9CVYCI2ldxYDJK8HDpDU6BSE9OTUxpOW8": {
+          "CreatebranchesLambdaVersionAkF4SHUYOloh8a0b5g7tEsD8QA9Ho5m2jh2RTHS4Ao": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreatebranchesLambdaFunction"
               },
-              "CodeSha256": "Xf3knlOdoMUtrqFYn1boFmXKXil6L2py7iVzzeamQEE="
+              "CodeSha256": "06VE8kJmYLFgvmQr+GtkV5q+xPmfFp1sej9HkyyixDk="
             }
           },
           "CreateDashaccountLambdaFunction": {
@@ -454,7 +459,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/rdm/dev/1517477715504-2018-02-01T09:35:15.504Z/rdm.zip"
+                "S3Key": "serverless/rdm/dev/1517478886506-2018-02-01T09:54:46.506Z/rdm.zip"
               },
               "FunctionName": "rdm-dev-create-account",
               "Handler": "account.create",
@@ -473,14 +478,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "CreateDashaccountLambdaVersiongkVOTm0vjjze2zv5B8SOie4TPnExvhe1xtz3IyEoTk": {
+          "CreateDashaccountLambdaVersionwQzhxY5vMVhyGXZNvaqGBTVqm2O4V8TtcxkmCDl4": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "CreateDashaccountLambdaFunction"
               },
-              "CodeSha256": "Xf3knlOdoMUtrqFYn1boFmXKXil6L2py7iVzzeamQEE="
+              "CodeSha256": "06VE8kJmYLFgvmQr+GtkV5q+xPmfFp1sej9HkyyixDk="
             }
           },
           "GetDashaccountLambdaFunction": {
@@ -490,7 +495,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/rdm/dev/1517477715504-2018-02-01T09:35:15.504Z/rdm.zip"
+                "S3Key": "serverless/rdm/dev/1517478886506-2018-02-01T09:54:46.506Z/rdm.zip"
               },
               "FunctionName": "rdm-dev-get-account",
               "Handler": "account.get",
@@ -509,14 +514,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "GetDashaccountLambdaVersion2yvpafDaWjAVw0d2PnaKxHSNKeiMoqS7RV55jT60GLc": {
+          "GetDashaccountLambdaVersionbGGQ7qvQZYrApcnbM4zu1qwOQwt6MIxcSUVTzlOM": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetDashaccountLambdaFunction"
               },
-              "CodeSha256": "Xf3knlOdoMUtrqFYn1boFmXKXil6L2py7iVzzeamQEE="
+              "CodeSha256": "06VE8kJmYLFgvmQr+GtkV5q+xPmfFp1sej9HkyyixDk="
             }
           },
           "ApiGatewayRestApi": {
@@ -560,18 +565,6 @@
               }
             }
           },
-          "ApiGatewayResourceUsersIdVar": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Ref": "ApiGatewayResourceUsers"
-              },
-              "PathPart": "{id}",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
           "ApiGatewayResourceHierarchy": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
@@ -582,18 +575,6 @@
                 ]
               },
               "PathPart": "hierarchy",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
-          "ApiGatewayResourceHierarchyIdVar": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Ref": "ApiGatewayResourceHierarchy"
-              },
-              "PathPart": "{id}",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -614,18 +595,6 @@
               }
             }
           },
-          "ApiGatewayResourceBranchesIdVar": {
-            "Type": "AWS::ApiGateway::Resource",
-            "Properties": {
-              "ParentId": {
-                "Ref": "ApiGatewayResourceBranches"
-              },
-              "PathPart": "{id}",
-              "RestApiId": {
-                "Ref": "ApiGatewayRestApi"
-              }
-            }
-          },
           "ApiGatewayResourceAccounts": {
             "Type": "AWS::ApiGateway::Resource",
             "Properties": {
@@ -636,6 +605,42 @@
                 ]
               },
               "PathPart": "accounts",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceUsersIdVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceUsers"
+              },
+              "PathPart": "{id}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceHierarchyIdVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceHierarchy"
+              },
+              "PathPart": "{id}",
+              "RestApiId": {
+                "Ref": "ApiGatewayRestApi"
+              }
+            }
+          },
+          "ApiGatewayResourceBranchesIdVar": {
+            "Type": "AWS::ApiGateway::Resource",
+            "Properties": {
+              "ParentId": {
+                "Ref": "ApiGatewayResourceBranches"
+              },
+              "PathPart": "{id}",
               "RestApiId": {
                 "Ref": "ApiGatewayRestApi"
               }
@@ -1418,7 +1423,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1517477715616": {
+          "ApiGatewayDeployment1517478886581": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1745,55 +1750,55 @@
           "HelloLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "HelloLambdaVersionngsPO0hhIzvBY2WdIFzGoYzZp9TkCBQ8yBvUoyukNA"
+              "Ref": "HelloLambdaVersiondl0VNB5m9NAVj8Id2G1u9P0I6qstOSikJf1Snoirk"
             }
           },
           "CreateuserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateuserLambdaVersionECHx2jkZ1F5gokKTet0MhTLPSdhrXKBurcYuIV6L1I"
+              "Ref": "CreateuserLambdaVersionFGbUYGLPzWQa4FM9Po1E7bzj6dfxPF0JLe2tJmOK0g"
             }
           },
           "GetuserLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetuserLambdaVersionVlab4d4n5jHJ7qEYQnydrAwa0QZQdm9krwGjtCd1VA"
+              "Ref": "GetuserLambdaVersionUAcE2c14XfTJSiV2MW6YPaISmqxTWhYDagFEW6M"
             }
           },
           "GethierarchyLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GethierarchyLambdaVersionIVmOHCwgaCtvt7nwGhLDm85e6sGwMNW4HHo34IfPM"
+              "Ref": "GethierarchyLambdaVersionRo9t6GjuMLtZfVt9Vmid5RA3Ey5zkbkT8Qk1npsPpA"
             }
           },
           "CreatehierarchyLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreatehierarchyLambdaVersionVk1EgXsEoH9rCOum3BLGmXeYM0d5fShOibsv3rUmI8"
+              "Ref": "CreatehierarchyLambdaVersiondX9KCKVlRWWNGKEdh8IBLEDXySNDiKD5UHckBnSq8"
             }
           },
           "GetbranchesLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetbranchesLambdaVersionq7ypfRGcwWdNAUYvsZcK1UruF3bpeH4Hl1UVTpo"
+              "Ref": "GetbranchesLambdaVersionBT27UKN3BOUKaux7TIrtlvAM8fhWjqU8oLyd59hYEnU"
             }
           },
           "CreatebranchesLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreatebranchesLambdaVersionai17jXRnv9CVYCI2ldxYDJK8HDpDU6BSE9OTUxpOW8"
+              "Ref": "CreatebranchesLambdaVersionAkF4SHUYOloh8a0b5g7tEsD8QA9Ho5m2jh2RTHS4Ao"
             }
           },
           "CreateDashaccountLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "CreateDashaccountLambdaVersiongkVOTm0vjjze2zv5B8SOie4TPnExvhe1xtz3IyEoTk"
+              "Ref": "CreateDashaccountLambdaVersionwQzhxY5vMVhyGXZNvaqGBTVqm2O4V8TtcxkmCDl4"
             }
           },
           "GetDashaccountLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetDashaccountLambdaVersion2yvpafDaWjAVw0d2PnaKxHSNKeiMoqS7RV55jT60GLc"
+              "Ref": "GetDashaccountLambdaVersionbGGQ7qvQZYrApcnbM4zu1qwOQwt6MIxcSUVTzlOM"
             }
           },
           "ServiceEndpoint": {
@@ -1818,7 +1823,12 @@
         "Description": "The AWS CloudFormation template for this Serverless application",
         "Resources": {
           "ServerlessDeploymentBucket": {
-            "Type": "AWS::S3::Bucket"
+            "Type": "AWS::S3::Bucket",
+            "Properties": {
+              "AccelerateConfiguration": {
+                "AccelerationStatus": "Suspended"
+              }
+            }
           }
         },
         "Outputs": {
@@ -2139,10 +2149,10 @@
         "vpc": {}
       }
     },
-    "artifact": "F:\\Hackathon\\ruby\\.serverless\\rdm.zip"
+    "artifact": "C:\\Users\\sushil.shah\\workspace\\hackathon\\ruby\\.serverless\\rdm.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/rdm/dev/1517477715504-2018-02-01T09:35:15.504Z",
+    "artifactDirectoryName": "serverless/rdm/dev/1517478886506-2018-02-01T09:54:46.506Z",
     "artifact": "rdm.zip"
   }
 }

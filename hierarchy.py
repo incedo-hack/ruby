@@ -1,19 +1,27 @@
 import json
-
 import logging
 from model import * 
+from playhouse.shortcuts import model_to_dict, dict_to_model
 
 def create(event, context):
-    body = {
-        "message": "Go Serverless v1.0! Your function executed successfully!",
-        "input": event
-    }
 
+    payload = json.loads(event['body'])
+
+    name = payload['name'] if 'name' in payload else None
+    parent_id = payload['parent_id'] if 'parent_id' in payload else None
+
+
+    # body = {
+    #     "message": "Go Serverless v1.0! Your function executed successfully!",
+    #     "input": event
+    # }
+
+    prefixNodes = prefix_nodes(name = name, parent_id = parent_id)
+    prefixNodes.save()
     response = {
         "statusCode": 200,
-        "body": json.dumps(body)
+        "body": json.dumps(model_to_dict(prefixNodes))
     }
-
     return response
 
     # Use this code if you don't use the http event with the LAMBDA-PROXY
