@@ -1,7 +1,5 @@
 DELIMITER $$
 
-USE `hierarchy_data`$$
-
 DROP PROCEDURE IF EXISTS `p_get_tree`$$
 
 CREATE PROCEDURE `p_get_tree`(
@@ -12,6 +10,9 @@ BEGIN
     node.`id`,
     node.`is_deleted`,
     node.`parent_id`,
+    node.`account_id`,
+    node.`branch_id`,
+	node.`type`,
     CONCAT(
         REPEAT('-', path.`path_length`),
         node.`name`
@@ -19,7 +20,10 @@ BEGIN
     path.`path_length`,
     GROUP_CONCAT(
         crumbs.`ancestor_id` SEPARATOR ','
-    ) AS breadcrumbs
+    ) AS breadcrumbs,
+    node.`account_id`,
+    node.`branch_id`,
+    node.`type`
   FROM
     `prefix_nodes` AS node
     JOIN `prefix_nodes_paths` AS path

@@ -96,9 +96,13 @@ def query_db(id):
         row_obj['id'] = row[0]
         row_obj['is_deleted'] = row[1]
         row_obj['parent_id'] = row[2]
-        row_obj['value'] = row[3].lstrip("-")
-        row_obj['path_length'] = row[4]
-        row_obj['breadcrumbs'] = row[5]
+        # row_obj['value'] = row[3].lstrip("-")
+        row_obj['account_id'] = row[3]
+        row_obj['branch_id'] = row[4]
+        row_obj['type'] = row[5]
+        row_obj['value'] = row[6].lstrip("-")
+        row_obj['path_length'] = row[7]
+        row_obj['breadcrumbs'] = row[8]
         # print(row_obj)
         response.append(row_obj)
     return response
