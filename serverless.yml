@@ -22,7 +22,7 @@ provider:
   runtime: python3.6
   region: ap-south-1
   stage: dev
-
+  memorySize: 128
 # you can overwrite defaults here
 
 # you can add statements to the Lambda function's IAM Role here
