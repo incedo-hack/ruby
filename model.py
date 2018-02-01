@@ -10,8 +10,8 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 try:
-    #db_env = 'LOCAL_DATABASE'
-    db_env = 'CLOUD_DATABASE'
+    db_env = 'LOCAL_DATABASE'
+    #db_env = 'CLOUD_DATABASE'
 
     cp = configparser.SafeConfigParser()
     cp.read(os.path.splitext(__file__)[0] + '.ini')

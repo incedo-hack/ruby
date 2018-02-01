@@ -81,10 +81,10 @@ def get(event, context):
                 "body": json.dumps(model_to_dict(account))
             }
         except pw.DoesNotExist:
-            logger.exception("Error Account doesNotExist for id {}".format(_id))
+            logger.exception("Account detail does not exist for id {}".format(_id))
 
             body = {
-                "message": "Error Account doesNotExist for id {}".format(_id),
+                "message": "Account detail does not exist for id {}".format(_id),
             }
             response = {
                 "statusCode": 500,

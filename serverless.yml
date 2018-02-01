@@ -79,6 +79,14 @@ functions:
           method: get
           cors: true
 
+  getalluser:
+    handler: user.getall
+    events:
+      - http:
+          path: users
+          method: get
+          cors: true
+
   gethierarchy:
     handler: hierarchy.get
     events:
