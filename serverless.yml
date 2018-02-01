@@ -155,5 +155,5 @@ functions:
 #       Description: "Description for the output"
 #       Value: "Some output value"
 
-plugins:
-  - serverless-python-requirements
+# plugins:
+#   - serverless-python-requirements
