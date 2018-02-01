@@ -1,6 +1,7 @@
 import json
 import logging
 from model import * 
+import peewee as pw
 from playhouse.shortcuts import model_to_dict, dict_to_model
 
 def create(event, context):
@@ -143,9 +144,16 @@ def get_by_account(event, context):
     }
     if 'pathParameters' in event and 'id' in event['pathParameters']:
         _id = event['pathParameters']['id']
-        
-        node_by_acc = prefix_nodes.get(account_id=_id)
-
+        try:
+            node_by_acc = prefix_nodes.get(account_id=_id)
+        except pw.DoesNotExist:
+            logger.exception("Hierarchy does not exist for account id {}".format(_id))
+            body = {"message": "Hierarchy does not exist for account id {}".format(_id)}
+            response = {
+                "statusCode": 404,
+                "body": json.dumps(body)
+            }
+            return response
         
         tree_list = query_db(node_by_acc.id)
         if tree_list:
@@ -158,7 +166,7 @@ def get_by_account(event, context):
                 "query_output" : tree_list
             }
             response = {
-                "statusCode": 400,
+                "statusCode": 404,
                 "body": json.dumps(body)
             }
             return response

@@ -87,7 +87,7 @@ def get(event, context):
                 "message": "Account detail does not exist for id {}".format(_id),
             }
             response = {
-                "statusCode": 500,
+                "statusCode": 404,
                 "body": json.dumps(body)
             }
 
