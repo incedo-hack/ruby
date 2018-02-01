@@ -86,6 +86,9 @@ class prefix_nodes(BaseModel):
     is_deleted = IntegerField(null=True)
     user_id = IntegerField(null=True)
     user_type = IntegerField(null=True)
+    account_id = IntegerField(null=True)
+    branch_id = IntegerField(null=True)
+    type = TextField(null=True)
 
 class Test(BaseModel):
     ts = DateTimeField(default=datetime.datetime.now)

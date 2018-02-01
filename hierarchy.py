@@ -9,6 +9,9 @@ def create(event, context):
 
     name = payload['name'] if 'name' in payload else None
     parent_id = payload['parent_id'] if 'parent_id' in payload else None
+    account_id = payload['account_id'] if 'account_id' in payload else None
+    branch_id = payload['branch_id'] if 'branch_id' in payload else None
+    type = payload['type'] if 'type' in payload else None
 
 
     # body = {
@@ -16,7 +19,9 @@ def create(event, context):
     #     "input": event
     # }
 
-    prefixNodes = prefix_nodes(name = name, parent_id = parent_id)
+    prefixNodes = prefix_nodes(name = name, parent_id = parent_id, account_id = account_id,\
+     branch_id=branch_id, type=type)
+     
     prefixNodes.save()
     response = {
         "statusCode": 200,
