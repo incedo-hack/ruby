@@ -110,8 +110,20 @@ functions:
           path: branches
           method: post
           cors: true
-
-
+  create-account:
+    handler: account.create
+    events:
+      - http:
+          path: accounts 
+          method: post
+          cors: true
+  get-account:
+    handler: account.get
+    events:
+      - http:
+          path: accounts/{id} 
+          method: get
+          cors: true
 
 
 #    The following are a few example events you can configure
