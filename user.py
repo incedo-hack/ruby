@@ -1,5 +1,11 @@
 import json
 from model import User
+import logging
+from playhouse.shortcuts import model_to_dict, dict_to_model
+
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
+
 def create(event, context):
     body = {
         "message": "Go Serverless v1.0! Your function executed successfully!",
@@ -20,7 +26,8 @@ def create(event, context):
     # user = User.get(User.id == 1)
     # # user = User.get(id=id)
 
-    user = User(role = 'Admin', user_name = 'Sumanth', first_name = 'Sumanth', last_name = 'Reddy', phone_number = '+914567890987', email_id = 'sumanth.reddy@incedoinc.com')
+    user = User(role = 'Admin', user_name = 'Sumanth', first_name = 'Sumanth', last_name = 'Reddy',\
+    phone_number = '+914567890987', email_id = 'sumanth.reddy@incedoinc.com')
     user.save()
 
     response = {

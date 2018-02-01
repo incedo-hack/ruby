@@ -10,7 +10,7 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 try:
-    # db_env = 'LOCAL_DATABASE'
+    #db_env = 'LOCAL_DATABASE'
     db_env = 'CLOUD_DATABASE'
 
     cp = configparser.SafeConfigParser()
@@ -198,12 +198,21 @@ class Utils(object):
         #prefixNodes.save()        
     
 if __name__ == "__main__":
-    Utils().drop_all_tables()
-    Utils().setup_tables()
-    Utils().load_mock_data()
-    test = Test()
-    dt = '08-08-2017 08:14'
-    print(test.ts)
-    datetime_object = datetime.datetime.strptime(dt, '%d-%m-%Y %H:%M')
-    print(datetime_object)
-    print(type(datetime_object))
+    # Utils().drop_all_tables()
+    # Utils().setup_tables()
+    # Utils().load_mock_data()
+    # test = Test()
+    # dt = '08-08-2017 08:14'
+    # print(test.ts)
+    # datetime_object = datetime.datetime.strptime(dt, '%d-%m-%Y %H:%M')
+    # print(datetime_object)
+    # print(type(datetime_object))
+    try:
+        requested_id = 6
+        foo = Account.get(id=requested_id)
+        print(foo)
+    except DoesNotExist:
+        print("Error occured")
+        # print(type(e))
+        raise ValueError('No instance of MyModel exists at {}'.format(requested_id))
+        

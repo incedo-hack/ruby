@@ -1,6 +1,8 @@
 import json
 from model import Account
 import logging
+import peewee as pw
+from playhouse.shortcuts import model_to_dict, dict_to_model
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
@@ -73,23 +75,16 @@ def get(event, context):
     if 'pathParameters' in event and 'id' in event['pathParameters']:
         _id = event['pathParameters']['id']
         try:
-            account = Account.get(id=_id)
-            logger.info("find account ")
-            body = {
-                "name" : account.name,
-                "id" : account.id
-            }
-        
+            account = Account.get(id=_id)                   
             response = {
                 "statusCode": 200,
-                "body": json.dumps(body)
+                "body": json.dumps(model_to_dict(account))
             }
-        except Exception as exp:
-            logger.exception(exp)
+        except pw.DoesNotExist:
+            logger.exception("Error Account doesNotExist for id {}".format(_id))
 
             body = {
-                "message": "Somethign went wrong",
-                 "exception" : exp
+                "message": "Error Account doesNotExist for id {}".format(_id),
             }
             response = {
                 "statusCode": 500,
