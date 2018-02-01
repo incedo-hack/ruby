@@ -1,11 +1,13 @@
 import json
-
-
+from model import prefix_nodes
 def create(event, context):
     body = {
         "message": "Go Serverless v1.0! Your function executed successfully!",
         "input": event
     }
+
+    prefixNodes = prefix_nodes(name = 'Hashtag', user_id = 0, user_type = 0)
+    prefixNodes.save()
 
     response = {
         "statusCode": 200,
@@ -44,3 +46,6 @@ def get(event, context):
         "event": event
     }
     """
+if __name__ == "__main__":
+    #print(get(None,None));  
+    print(create(None,None))

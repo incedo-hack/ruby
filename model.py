@@ -10,8 +10,8 @@ logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 try:
-    # db_env = 'LOCAL_DATABASE'
-    db_env = 'CLOUD_DATABASE'
+    db_env = 'LOCAL_DATABASE'
+    #db_env = 'CLOUD_DATABASE'
 
     cp = configparser.SafeConfigParser()
     cp.read(os.path.splitext(__file__)[0] + '.ini')
@@ -103,16 +103,19 @@ class Utils(object):
         # database.create_tables([DeviceReadings])
 
     def drop_all_tables(self):
-        database.drop_table(DeviceReadings)
-        database.drop_table(Device)
+        #database.drop_table(DeviceReadings)
+        #database.drop_table(Device)
         database.drop_table(User)
-        database.drop_table(Country)
+        #database.drop_table(Country)
         database.drop_table(Branch)
         database.drop_table(Account)
         
     def load_mock_data(self):
         
-        Account(name='Account Name')        
+        #Add some Account
+        account = Account(name = 'Incedo Inc', address1 = '2350 Mission College Blvd.,Suite 246', address2 = 'Santa Clara', state = 'CA', city = 'Santa Clara', zip = '95054', phone = '+1 408 531 6040', web = 'www.incedoinc.com', contact_name = 'Robert', contact_email = 'robert@incedoinc.com')
+        account.save()      
+
         #Add some countries
         # country = Country(name = 'India', short_name='IN', code='+91')
         # country.save()
