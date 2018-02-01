@@ -1,6 +1,7 @@
 import json
 from model import Branch
 import logging
+import peewee as pw
 from playhouse.shortcuts import model_to_dict, dict_to_model
 
 logger = logging.getLogger()
@@ -73,12 +74,11 @@ def get(event, context):
                 "statusCode": 200,
                 "body": json.dumps(model_to_dict(branch))
             }
-        except Exception as exp:
-            logger.exception(exp)
+        except pw.DoesNotExist:
+            logger.exception("Branch detail does not exist for id {}".format(_id))
 
             body = {
-                "message": "Somethign went wrong",
-                 "exception" : exp
+                "message": "Branch detail does not exist for id {}".format(_id),
             }
             response = {
                 "statusCode": 500,
