@@ -2,16 +2,28 @@ import json
 import logging
 import peewee as pw
 import sys
+from model import Utils
+
+
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
 
 def hello(event, context):
-    foo = main(event, context)
+    # foo = main(event, context)
+    success = False
+    try:
+        Utils().setup_tables()
+        Utils().load_mock_data()
+        success = True
+    except Exception as exp:
+        logger.error("Error occured while setting up the tables")
+        logger.error(exp)
+
     body = {
         "message": "Go Serverless v1.0! Your function executed successfully!",
         "input": event,
-        "foo"  : foo
+        "success" : success
     }
 
     response = {
@@ -65,5 +77,5 @@ def main(event, context):
     logger.info("SUCCESS: Connection to RDS mysql instance succeeded")
     return resp
 
-foo = main(None, None)
-print(foo)
+# foo = main(None, None)
+# print(foo)
