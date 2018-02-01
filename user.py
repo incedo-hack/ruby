@@ -2,6 +2,7 @@ import json
 from model import User
 import logging
 import peewee as pw
+from peewee import *
 from playhouse.shortcuts import model_to_dict, dict_to_model
 
 logger = logging.getLogger()
@@ -34,9 +35,11 @@ def create(event, context):
     last_name = payload['last_name'] if 'last_name' in payload else None
     phone_number = payload['phone_number'] if 'phone_number' in payload else None
     email_id = payload['email_id'] if 'email_id' in payload else None
+    account_id = payload['account_id'] if 'account_id' in payload else None
+    permissions = payload['permissions'] if 'permissions' in payload else None
 
     user = User(role = role, user_name = user_name, first_name = first_name, last_name = last_name,\
-    phone_number = phone_number, email_id = email_id)
+    phone_number = phone_number, email_id = email_id, account_id = account_id, permissions = permissions)
     user.save()
 
     response = {
@@ -98,10 +101,22 @@ def get(event, context):
     }
     """
 def getall(event, context):
-    user = User.select()
+    users = User.select()
+    user_list = []
+    for user in users:
+        tmp = dict()
+        tmp['id'] = user.id
+        tmp['user_name'] = user.user_name
+        tmp['first_name'] = user.first_name
+        tmp['last_name'] = user.last_name
+        tmp['phone_number'] = user.phone_number
+        tmp['email_id'] = user.email_id
+        tmp['account_id'] = user.account_id
+        tmp['permissions'] = user.permissions
+        user_list.append(tmp)
     response = {
             "statusCode": 200,
-            "body": json.dumps(model_to_dict(user))
+            "body": json.dumps(user_list)
         }
     return response
 

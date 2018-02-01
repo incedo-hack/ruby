@@ -118,6 +118,15 @@ functions:
           path: branches
           method: post
           cors: true
+
+  getallbranches:
+    handler: branches.getall
+    events:
+      - http:
+          path: branches
+          method: get
+          cors: true
+
   create-account:
     handler: account.create
     events:
@@ -125,11 +134,20 @@ functions:
           path: accounts 
           method: post
           cors: true
+
   get-account:
     handler: account.get
     events:
       - http:
           path: accounts/{id} 
+          method: get
+          cors: true
+
+  getallaccount:
+    handler: account.getall
+    events:
+      - http:
+          path: accounts
           method: get
           cors: true
 
