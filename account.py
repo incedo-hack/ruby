@@ -1,6 +1,9 @@
 import json
-from model import User
+from model import Account
+import logging
 
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 def create(event, context):
     body = {
@@ -21,13 +24,28 @@ def create(event, context):
     # }    
     # user = User.get(User.id == 1)
     # # user = User.get(id=id)
+    payload = json.loads(event['body'])
 
-    user = User(role = 'Admin', user_name = 'Sumanth', first_name = 'Sumanth', last_name = 'Reddy', phone_number = '+914567890987', email_id = 'sumanth.reddy@incedoinc.com')
-    user.save()
+    name = payload['name'] if 'name' in payload else None
+    address1 = payload['address1'] if 'address1' in payload else None
+    address2 = payload['address2'] if 'address2' in payload else None
+    state = payload['state'] if 'state' in payload else None
+    city = payload['city'] if 'city' in payload else None
+    zip = payload['zip'] if 'zip' in payload else None
+    phone = payload['phone'] if 'phone' in payload else None
+    web = payload['web'] if 'web' in payload else None
+    contact_name = payload['contact_name'] if 'contact_name' in payload else None
+    contact_email = payload['contact_email'] if 'contact_email' in payload else None
+
+    account = Account(name = name , address1 = address1, address2 = address2, state = state, \
+    city = city, zip = zip, phone = phone, web = web, contact_name = contact_name, contact_email = contact_email)
+    account.save()
+    # user = User(role = 'Admin', user_name = 'Sumanth', first_name = 'Sumanth', last_name = 'Reddy', phone_number = '+914567890987', email_id = 'sumanth.reddy@incedoinc.com')
+    # user.save()
 
     response = {
         "statusCode": 200,
-        "body": json.dumps(body)
+        "body": json.dumps(account.id)
     }
 
     return response
@@ -42,20 +60,41 @@ def create(event, context):
     """
 
 def get(event, context):
+    logging.info("received event %s", event)
     body = {
         #"message": "Go Serverless v1.0! Your function executed successfully!",
-        "role" : User.get(User.id == 1).role,
-        "user_name" : User.get(User.id == 1).user_name,
-        "first_name" : User.get(User.id == 1).first_name,
-        "last_name" : User.get(User.id == 1).last_name,
-        "phone_number" : User.get(User.id == 1).phone_number,
-        "email_id" : User.get(User.id == 1).email_id
+        # "role" : User.get(User.id == 1).role,
+        # "user_name" : User.get(User.id == 1).user_name,
+        # "first_name" : User.get(User.id == 1).first_name,
+        # "last_name" : User.get(User.id == 1).last_name,
+        # "phone_number" : User.get(User.id == 1).phone_number,
+        # "email_id" : User.get(User.id == 1).email_id
     }
+    if 'pathParameters' in event and 'id' in event['pathParameters']:
+        _id = event['pathParameters']['id']
+        try:
+            account = Account.get(id=_id)
+            logger.info("find account ")
+            body = {
+                "name" : account.name,
+                "id" : account.id
+            }
+        
+            response = {
+                "statusCode": 200,
+                "body": json.dumps(body)
+            }
+        except Exception as exp:
+            logger.exception(exp)
 
-    response = {
-        "statusCode": 200,
-        "body": json.dumps(body)
-    }
+            body = {
+                "message": "Somethign went wrong",
+                 "exception" : exp
+            }
+            response = {
+                "statusCode": 500,
+                "body": json.dumps(body)
+            }
 
     return response
 
