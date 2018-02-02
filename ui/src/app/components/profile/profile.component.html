@@ -1,0 +1,112 @@
+<!--<div class="container">
+    <form action="" *ngIf="clicked==false" class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Name:</label>
+            <div class="col-sm-10">
+                <h5>{{user.name}}</h5>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Country:</label>
+            <div class="col-sm-10">
+                <h5>{{user.country}}</h5>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" (click)="editProfile()">Edit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="container" *ngIf="clicked==true">
+    <form class="form-horizontal">
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="email">Name:</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="email" value={{user.name}}>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-2" for="pwd">Country:</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="pwd" value={{user.country}}>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <button type="submit" class="btn btn-default" (click)="updateProfile()">Save</button>
+                <button type="submit" class="btn btn-default" (click)="cancel()">Cancel</button>
+
+            </div>
+        </div>
+    </form>
+</div>-->
+
+
+
+<div class="container" *ngIf="userInfo">
+    <div class="col-md-6">
+        <div class="thumbnail">
+            <form action="" class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="fName">First Name:</label>
+                    <div class="col-sm-9">
+                        <h5>{{userInfo.first_name}}</h5>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="lName">Last Name:</label>
+                    <div class="col-sm-9">
+                        <h5>
+                            {{userInfo.last_name}}</h5>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="lName">Username:</label>
+                    <div class="col-sm-9">
+                        <h5>
+                            {{userInfo.user_name}}</h5>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="lName">Role:</label>
+                    <div class="col-sm-9">
+                        <h5>
+                            {{userInfo.role}}</h5>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="lName">Phone:</label>
+                    <div class="col-sm-9">
+                        <h5>
+                            {{userInfo.phone_number}}</h5>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-3" for="lName">Email:</label>
+                    <div class="col-sm-9">
+                        <h5>
+                            {{userInfo.email_id}}</h5>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="thumbnail" *ngIf="hasPermissions==true">
+            <div class="tree-container" style="text-align: center">
+                <p class="tree-title">Permissions</p>
+                <tree [tree]="userPermissionsTree" [settings]="settings" (nodeRemoved)="onNodeRemoved($event)" (nodeRenamed)="onNodeRenamed($event)" (nodeSelected)="onNodeSelected($event)" (nodeMoved)="onNodeMoved($event)" (nodeCreated)="onNodeCreated($event)">
+                </tree>
+            </div>
+        </div>
+        <div class="thumbnail" *ngIf="hasPermissions==false" style="height: 250px;justify-content: center;display: flex;align-items: center;">
+            <div class="tree-container" style="text-align: center">
+                <p class="tree-title">No Permissions</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<body>
+    <div class="center-container">
+        <!--header-->
+        <div class="header-user">
+            <h1><span>C</span>reate <span>U</span>ser</h1>
+        </div>
+        <!--//header-->
+        <!--main-->
+        <div class="container">
+            <div class="col-md-6">
+                <div class="sub-main">
+                    <form [formGroup]="createUserForm">
+                        <input placeholder="First Name" type="text" formControlName="firstName" required>
+                        <input placeholder="Last Name" type="text" formControlName="lastName" required>
+                        <input placeholder="User Name" type="text" formControlName="userName" required>
+                        <input placeholder="E-mail" type="email" formControlName="email" required>
+                        <input placeholder="Phone Number" name="Phone" type="tel" formControlName="phone" required>
+                        <input placeholder="Role" name="role" type="text" formControlName="role" required>
+                        <select class="form-control" (change)="selectedBranch($event.target.value)">
+                            <option>Select Account</option>
+                            <option *ngFor="let account of accounts" [value]=account.id>{{account.name}}</option>
+                          </select>
+                        <input type="submit" value="Create User" (click)="createUser()">
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-6" *ngIf="selectedBranchId">
+                <div class="thumbnail" id="branchTree">
+                    <div class="tree-container" style="text-align: center">
+                        <p class="tree-title">Select Permissions</p>
+                        <tree [tree]="permissionsTree" [settings]="settings" (nodeRemoved)="onNodeRemoved($event)" (nodeRenamed)="onNodeRenamed($event)" (nodeSelected)="onNodeSelected($event)" (nodeMoved)="onNodeMoved($event)" (nodeCreated)="onNodeCreated($event)">
+                        </tree>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>

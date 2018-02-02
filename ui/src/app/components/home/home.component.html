@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row customRow">
+        <div class="col-md-4">
+            <div class="thumbnail customThumb" id="users" (click)="goToAllUsers()">
+                <div class="verticalAlign">
+                    <div class="col-md-3"><i class="fa fa-users fa-4x"></i></div>
+                    <div class="col-md-9 cardContent">
+                        <h4 class="cardTitle">Users</h4>
+                        <h3 class="count">{{userCount}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail customThumb" id="branches">
+                <div class="verticalAlign">
+                    <div class="col-md-3"><i class="fa fa-globe fa-4x"></i></div>
+                    <div class="col-md-8 cardContent">
+                        <h4 class="cardTitle">Branches</h4>
+                        <h3 class="count">{{branchCount}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="thumbnail customThumb" id="sales">
+                <div class="verticalAlign">
+                    <div class="col-md-3"><i class="fa fa-key fa-4x"></i></div>
+                    <div class="col-md-9 cardContent">
+                        <h4 class="cardTitle">Accounts</h4>
+                        <h3 class="count">{{accountCount}}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="thumbnail" id="branchTree">
+                <div class="tree-container" style="text-align: center">
+                    <p class="tree-title">Branch Hierachy</p>
+                    <tree [tree]="pls" [settings]="settings" (nodeRemoved)="onNodeRemoved($event)" (nodeRenamed)="onNodeRenamed($event)" (nodeSelected)="onNodeSelected($event)" (nodeMoved)="onNodeMoved($event)" (nodeCreated)="onNodeCreated($event)">
+                    </tree>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

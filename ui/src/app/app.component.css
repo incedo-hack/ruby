@@ -1,0 +1,58 @@
+.navbar-default {
+    background-color: #F0BCB4;
+    border: none;
+    color: white;
+}
+
+.navbar-fixed-top {
+    min-height: 80px;
+}
+
+.navbar-nav > li > a {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    line-height: 80px;
+    color: white;
+}
+
+@media (max-width: 767px) {
+    .navbar-nav > li > a {
+        line-height: 20px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: white;
+    }
+}
+
+.navBrand {
+    width: 240px;
+    height: 80px;
+    background-color: #8B5C7E;
+}
+
+#headerCustom {
+    padding-left: 0px;
+}
+
+a.logo {
+    font-size: 32px;
+    color: #fff;
+    float: left;
+    margin: 20px 0 0 25px;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+
+
+.icon-background {
+    color: #8B5C7E;
+}
+
+.dropdown-menu > li > a {
+    padding: 10px;
+}
+
+.fa-user:hover {
+    color: #F4A890;
+}

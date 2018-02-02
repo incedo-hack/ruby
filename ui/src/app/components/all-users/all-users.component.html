@@ -1,0 +1,8 @@
+<div>
+    <ul class="list-group">
+        <li *ngFor="let user of users" class="list-group-item" (click)="goToUser(user.id)">{{user.user_name}}</li>
+    </ul>
+    <div style="text-align: center">
+        <button class="btn btn-primary" style="text-align: center" [routerLink]="['/user']">Add User</button>
+    </div>
+</div>

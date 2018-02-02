@@ -1,0 +1,89 @@
+/*.tree-demo-app {
+    width: -moz-fit-content;
+    width: -webkit-fit-content;
+    width: fit-content;
+}*/
+
+.tree-container {
+    vertical-align: top;
+    width: 100%;
+    background-color: white;
+    padding: 30px
+}
+
+.tree-title {
+    color: #40a070;
+    font-size: 2em;
+}
+
+.notice {
+    color: #e91e63;
+    font-size: 1.2em;
+    font-style: italic;
+}
+
+.customThumb {
+    height: auto;
+    min-height: 150px;
+    border-radius: 0px;
+    color: white;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+    cursor: pointer;
+}
+
+#users {
+    background-color: #FC3158;
+    border: transparent;
+}
+
+#branches {
+    background-color: #53D769;
+    border: transparent;
+}
+
+
+
+#sales {
+    background-color: #147EFB;
+    border: transparent;
+}
+
+#sites {
+    background-color: #2A2727;
+    border: transparent;
+}
+
+#sales:hover,
+#branches:hover,
+#users:hover,
+#sites:hover {
+    background-color: #8B5C7E;
+    border: transparent;
+    transition: background 0.5s linear;
+}
+
+.customRow {
+    padding: 20px;
+}
+
+#branchTree {
+    border-radius: 0px;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16)
+}
+
+.cardTitle {
+    font-size: 22px;
+}
+
+.count {
+    font-size: 35px;
+    margin-top: 0px;
+}
+
+.verticalAlign {
+    padding: 32px;
+}
+
+.cardContent {
+    padding-left: 25px;
+}

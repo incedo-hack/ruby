@@ -1,0 +1,20 @@
+.form-group {
+    margin-bottom: 5px;
+}
+
+.thumbnail {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+
+}
+
+.tree-container {
+    vertical-align: top;
+    width: 100%;
+    background-color: white;
+    padding: 30px
+}
+
+.tree-title {
+    color: #40a070;
+    font-size: 2em;
+}
