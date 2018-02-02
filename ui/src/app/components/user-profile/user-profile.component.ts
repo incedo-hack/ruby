@@ -25,7 +25,7 @@ export class UserProfileComponent implements OnInit {
     accounts:any;
     selectedBranchId:number;
     selectedPermissionId:any;
-    title:string;
+    title:any;
     public settings: Ng2TreeSettings = {
     rootIsVisible: false,
   };

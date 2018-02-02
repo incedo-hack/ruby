@@ -36,8 +36,14 @@
 
         <div class="col-md-12">
             <div class="thumbnail" id="branchTree">
+                <select (change)="selectedBranch($event.target.value)">
+                            <option>Select Account</option>
+                            <option *ngFor="let account of accounts" [value]=account.id>{{account.name}}</option>
+                          </select>
                 <div class="tree-container" style="text-align: center">
-                    <p class="tree-title">Branch Hierachy</p>
+                    <p class="tree-title" *ngIf="title">Account Hierachy</p>
+                    <p class="tree-title" *ngIf="title==null">No account selected</p>
+
                     <p>{{title}}</p>
                     <tree [tree]="finalTree" [settings]="settings" (nodeRemoved)="onNodeRemoved($event)" (nodeRenamed)="onNodeRenamed($event)" (nodeSelected)="onNodeSelected($event)" (nodeMoved)="onNodeMoved($event)" (nodeCreated)="onNodeCreated($event)">
                     </tree>

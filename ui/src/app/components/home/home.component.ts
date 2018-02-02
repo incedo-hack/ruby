@@ -17,7 +17,9 @@ userCount:number;
     accountIds:any=[];
     finalTree:any;
     allTreeArray:any=[];
-    title:string;
+    title:any;
+    accounts:any;
+    selectedBranchId:number;
   constructor(private http:Http,
               private router:Router) {
   }
@@ -34,7 +36,7 @@ public settings: Ng2TreeSettings = {
       this.getBranchCount();
       this.getUserCount();
   }
-getHierachy(id){
+/*getHierachy(id){
     this.http.get("https://djvp2idgi0.execute-api.ap-south-1.amazonaws.com/dev/hierarchy-by-account/" + id).subscribe(data=>{
         this.pls=data.json();
         this.allTreeArray.push(this.pls);
@@ -50,7 +52,20 @@ getHierachy(id){
     },err=>{
         console.log(err);
     })
+}*/
+    getHierachy(){
+    this.http.get("https://djvp2idgi0.execute-api.ap-south-1.amazonaws.com/dev/hierarchy-by-account/" + this.selectedBranchId).subscribe(data=>{
+        this.finalTree=data.json();
+        this.title=this.finalTree.value;
+        
+    },err=>{
+        console.log(err);
+    })
 }
+    selectedBranch(id):void{
+this.selectedBranchId=id;
+       this.getHierachy();
+   }
     goToAllUsers(){
         this.router.navigate(['allUsers'])
     }
@@ -90,14 +105,14 @@ getHierachy(id){
     getAccountsCount(){
         this.http.get("https://djvp2idgi0.execute-api.ap-south-1.amazonaws.com/dev/accounts")
         .subscribe(data=>{
-            let response =data.json();
-            this.accountCount=response.length;
-            for(var i=0;i<response.length;i++){
-                this.accountIds.push(response[i].id);
+            this.accounts =data.json();
+            this.accountCount=this.accounts.length;
+            /*for(var i=0;i<this.accounts.length;i++){
+                this.accountIds.push(this.accounts[i].id);
             }
             for(var j=0;j<this.accountIds.length;j++){
                 this.getHierachy(this.accountIds[j]);
-            }
+            }*/
         },err=>{
             console.log(err)
         })
