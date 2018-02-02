@@ -28,6 +28,7 @@
                 <div class="thumbnail" id="branchTree">
                     <div class="tree-container" style="text-align: center">
                         <p class="tree-title">Select Permissions</p>
+                        <p>{{title}}</p>
                         <tree [tree]="permissionsTree" [settings]="settings" (nodeRemoved)="onNodeRemoved($event)" (nodeRenamed)="onNodeRenamed($event)" (nodeSelected)="onNodeSelected($event)" (nodeMoved)="onNodeMoved($event)" (nodeCreated)="onNodeCreated($event)">
                         </tree>
                     </div>

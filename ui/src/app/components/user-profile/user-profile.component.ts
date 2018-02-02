@@ -25,6 +25,7 @@ export class UserProfileComponent implements OnInit {
     accounts:any;
     selectedBranchId:number;
     selectedPermissionId:any;
+    title:string;
     public settings: Ng2TreeSettings = {
     rootIsVisible: false,
   };
@@ -75,6 +76,7 @@ this.selectedBranchId=id;
     getHierachy(){
     this.http.get("https://djvp2idgi0.execute-api.ap-south-1.amazonaws.com/dev/hierarchy-by-account/" + this.selectedBranchId).subscribe(data=>{
         this.permissionsTree=data.json();
+        this.title=this.permissionsTree.value;
         
     },err=>{
         console.log(err);

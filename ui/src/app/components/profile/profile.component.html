@@ -99,6 +99,7 @@
         <div class="thumbnail" *ngIf="hasPermissions==true">
             <div class="tree-container" style="text-align: center">
                 <p class="tree-title">Permissions</p>
+                <p>{{title}}</p>
                 <tree [tree]="userPermissionsTree" [settings]="settings" (nodeRemoved)="onNodeRemoved($event)" (nodeRenamed)="onNodeRenamed($event)" (nodeSelected)="onNodeSelected($event)" (nodeMoved)="onNodeMoved($event)" (nodeCreated)="onNodeCreated($event)">
                 </tree>
             </div>

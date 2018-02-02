@@ -18,6 +18,7 @@ user={name:"John",country:"Uk","state":"Manchester"}*/
     userPermissions:any;
     userPermissionsTree:any;
     userPermissionsTreeArr:any=[];
+    title:string;
     hasPermissions:boolean=false;
     public settings: Ng2TreeSettings = {
     rootIsVisible: false,
@@ -61,6 +62,7 @@ this.navigatedUserId = params["id"];
                }, {});
              this.userPermissionsTree=arrayToObject(this.userPermissionsTreeArr);
              console.log(this.userPermissionsTree);
+             this.title=this.userPermissionsTree.value;
          },err=>{
              console.log("err",err);
              this.hasPermissions=false;
