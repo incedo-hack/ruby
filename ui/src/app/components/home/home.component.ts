@@ -17,6 +17,7 @@ userCount:number;
     accountIds:any=[];
     finalTree:any;
     allTreeArray:any=[];
+    title:string;
   constructor(private http:Http,
               private router:Router) {
   }
@@ -43,7 +44,8 @@ getHierachy(id){
                  return obj
                }, {});
              this.finalTree=arrayToObject(this.allTreeArray);
-             console.log(this.finalTree);
+             console.log(this.finalTree.value);
+        this.title=this.finalTree.value;
         
     },err=>{
         console.log(err);

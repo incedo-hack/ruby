@@ -38,7 +38,8 @@
             <div class="thumbnail" id="branchTree">
                 <div class="tree-container" style="text-align: center">
                     <p class="tree-title">Branch Hierachy</p>
-                    <tree [tree]="pls" [settings]="settings" (nodeRemoved)="onNodeRemoved($event)" (nodeRenamed)="onNodeRenamed($event)" (nodeSelected)="onNodeSelected($event)" (nodeMoved)="onNodeMoved($event)" (nodeCreated)="onNodeCreated($event)">
+                    <p>{{title}}</p>
+                    <tree [tree]="finalTree" [settings]="settings" (nodeRemoved)="onNodeRemoved($event)" (nodeRenamed)="onNodeRenamed($event)" (nodeSelected)="onNodeSelected($event)" (nodeMoved)="onNodeMoved($event)" (nodeCreated)="onNodeCreated($event)">
                     </tree>
                 </div>
             </div>
