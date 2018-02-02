@@ -16,7 +16,8 @@ user={name:"John",country:"Uk","state":"Manchester"}*/
     navigatedUserId:number;
     userInfo:any;
     userPermissions:any;
-    userPermissionsTree:any=[];
+    userPermissionsTree:any;
+    userPermissionsTreeArr:any=[];
     hasPermissions:boolean=false;
     public settings: Ng2TreeSettings = {
     rootIsVisible: false,
@@ -47,12 +48,19 @@ this.navigatedUserId = params["id"];
         })
     }
      getUserPermissions(id):void{
-         this.http.get("https://djvp2idgi0.execute-api.ap-south-1.amazonaws.com/dev/hierarchy-by-account/" + id)
+         this.http.get("https://djvp2idgi0.execute-api.ap-south-1.amazonaws.com/dev/hierarchy/" + id)
          .subscribe(data=>{
-             console.log(data.json());
              this.pls=data.json();
              this.hasPermissions=true;
-             this.userPermissionsTree.push(this.pls);
+             this.userPermissionsTreeArr.push(this.pls);
+             console.log(this.userPermissionsTreeArr);
+             const arrayToObject = (array) =>
+               array.reduce((obj, item) => {
+                 obj = item
+                 return obj
+               }, {});
+             this.userPermissionsTree=arrayToObject(this.userPermissionsTreeArr);
+             console.log(this.userPermissionsTree);
          },err=>{
              console.log("err",err);
              this.hasPermissions=false;

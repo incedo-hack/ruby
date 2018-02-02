@@ -14,6 +14,9 @@ export class HomeComponent implements OnInit {
 userCount:number;
     accountCount:number;
     branchCount:number;
+    accountIds:any=[];
+    finalTree:any;
+    allTreeArray:any=[];
   constructor(private http:Http,
               private router:Router) {
   }
@@ -25,14 +28,22 @@ public settings: Ng2TreeSettings = {
    pls: TreeModel;
 
   public ngOnInit(): void {
-    this.getHierachy();
+    //this.getHierachy();
       this.getAccountsCount();
       this.getBranchCount();
       this.getUserCount();
   }
-getHierachy(){
-    this.http.get("https://djvp2idgi0.execute-api.ap-south-1.amazonaws.com/dev/hierarchy/20").subscribe(data=>{
+getHierachy(id){
+    this.http.get("https://djvp2idgi0.execute-api.ap-south-1.amazonaws.com/dev/hierarchy-by-account/" + id).subscribe(data=>{
         this.pls=data.json();
+        this.allTreeArray.push(this.pls);
+        const arrayToObject = (array) =>
+               array.reduce((obj, item) => {
+                 obj = item
+                 return obj
+               }, {});
+             this.finalTree=arrayToObject(this.allTreeArray);
+             console.log(this.finalTree);
         
     },err=>{
         console.log(err);
@@ -79,6 +90,12 @@ getHierachy(){
         .subscribe(data=>{
             let response =data.json();
             this.accountCount=response.length;
+            for(var i=0;i<response.length;i++){
+                this.accountIds.push(response[i].id);
+            }
+            for(var j=0;j<this.accountIds.length;j++){
+                this.getHierachy(this.accountIds[j]);
+            }
         },err=>{
             console.log(err)
         })

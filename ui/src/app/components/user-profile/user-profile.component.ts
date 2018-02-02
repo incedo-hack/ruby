@@ -54,16 +54,16 @@ this.selectedBranchId=id;
         const per=[this.selectedPermissionId];
         const body={
                 "role": this.createUserForm.value.role,
-                "user_name": this.createUserForm.value.role,
-                "first_name": this.createUserForm.value.role,
-                "last_name": this.createUserForm.value.role,
-                "phone_number": this.createUserForm.value.role,
-                "email_id": this.createUserForm.value.role,
+                "user_name": this.createUserForm.value.userName,
+                "first_name": this.createUserForm.value.firstName,
+                "last_name": this.createUserForm.value.lastName,
+                "phone_number": this.createUserForm.value.phone,
+                "email_id": this.createUserForm.value.email,
                 "account_id": this.selectedBranchId,
                 "permissions": JSON.stringify(per)
         }
         console.log(body);
-        this.http.post("https://djvp2idgi0.execute-api.ap-south1.amazonaws.com/dev/users",body)
+        this.http.post("https://djvp2idgi0.execute-api.ap-south-1.amazonaws.com/dev/users",body)
         .subscribe(data=>{
             console.log(data.json());
             window.alert("user created");
